@@ -3,8 +3,7 @@ const web = require('./src/web');
 const bot = require('./src/bot');
 
 
-const app = web(bot(functions.config().betmanager.token));
-const router = functions.https.onRequest(app);
+const app = web(bot(functions.config().betmanager.token, false));
 
 
-module.exports = router;
+exports.router = functions.https.onRequest(app);

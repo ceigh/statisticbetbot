@@ -10,4 +10,4 @@ const req = process.env.SOCKS_HOST ? {
   },
 } : undefined;
 
-require('./web')(require('./bot')(process.env.TOKEN, req));
+require('./web')(require('./bot')(process.env.TOKEN, true, req));

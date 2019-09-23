@@ -1,6 +1,6 @@
 module.exports = (bot, msg, match) => {
-  const sum = +match[2].replace(',', '.');
-  const k = +match[3].replace(',', '.');
+  const sum = Number(match[2].replace(',', '.'));
+  const k = Number(match[3].replace(',', '.'));
   const profit = Math.round((sum * k - sum) * 100) / 100;
 
   bot.sendMessage(msg.from.id,

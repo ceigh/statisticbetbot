@@ -2,7 +2,7 @@ const Bot = require('node-telegram-bot-api');
 const handlers = require('./handlers');
 
 
-const createBot = (token, request = undefined, polling = true) => {
+const createBot = (token, polling, request = undefined) => {
   const bot = new Bot(token, {polling, request});
   handlers.load(bot);
   return bot;
