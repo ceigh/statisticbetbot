@@ -1,16 +1,16 @@
 const express = require('express');
-// const cors = require('cors');
 
 
-const app = express();
-// app.use(cors({ origin: true }));
+const createApp = bot => {
+  const app = express();
 
-
-module.exports = bot => {
-  app.post(`/${bot.token}`, (req, res) => {
+  app.post(`/${bot.token}`, async (req, res) => {
     bot.processUpdate(req.body);
     res.sendStatus(200);
   });
 
   return app;
 };
+
+
+module.exports = createApp;
