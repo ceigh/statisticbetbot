@@ -1,0 +1,23 @@
+{
+  "name": "betmanager",
+  "author": "Artjom Löbsack",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "express": "latest",
+    "node-telegram-bot-api": "^0.30.0",
+    "body-parser": "latest"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "socks5-https-client": "^1.2.1"
+  },
+  "private": true
+}
