@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV === 'development') require('dotenv').config();
+require('dotenv').config();
 
 const createBot = require('./lib/createBot');
 const launchApp = require('./lib/launchApp');
