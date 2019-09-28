@@ -1,14 +1,14 @@
 const Bot = require('node-telegram-bot-api');
 const createReq = require('./createReq');
-const handlers = require('../handlers');
+const handlers = require('./handlers');
 
 
 const createBot = (token, opts = {}) => {
-  opts.polling = process.env.NODE_ENV === 'development';
+  const isDev = process.env.NODE_ENV === 'development';
+
+  opts.polling = isDev;
   opts.request = createReq();
-  opts.webHook = process.env.NODE_ENV !== 'development' ? {
-    port: process.env.PORT,
-  } : undefined;
+  opts.webHook = !isDev ? {port: process.env.PORT} : undefined;
 
   const bot = new Bot(token, opts);
   handlers.load(bot);

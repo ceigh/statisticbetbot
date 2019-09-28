@@ -1,4 +1,4 @@
-const docs = require('../lib/docs');
+const docs = require('../docs');
 
 
 module.exports = (bot, msg, match) => {
