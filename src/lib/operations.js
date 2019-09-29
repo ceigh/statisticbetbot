@@ -1,21 +1,21 @@
-const usrHasData = usr => {
-  const val = true;
-  console.log(`${usr} has data: ${val}`);
-  return val;
-};
+const {Client} = require('pg');
 
-const waitMsg = usr => {
-  console.log(`Wait msg from ${usr}.`);
-};
 
-const isWaitMsg = usr => {
-  const val = true;
-  console.log(`${usr} wait message: ${val}`);
-  return val;
-};
+const {DATABASE_URL} = process.env;
+const ADD_BET_CFG = 'INSERT INTO bets(uid, result, bet, amount, profit)'
+                    + ' VALUES($1, $2, $3, $4, $5)';
 
-const addBet = (usr, bet) => {
-  console.log(`Stored '${bet.txt}' bet to ${usr} with ${bet.val} amount.`);
+
+const addBet = (uid, result, {bet, amount, profit}) => {
+  return new Promise((resolve, reject) => {
+    const client = new Client({connectionString: DATABASE_URL, ssl: true});
+    client.connect();
+    client.query(ADD_BET_CFG, [uid, result, bet, amount, profit],
+                 (e, res) => {
+                   client.end();
+                   e ? reject(e) : resolve(res);
+                 });
+  });
 };
 
 const parseMsg = msg => {
@@ -30,9 +30,6 @@ const parseMsg = msg => {
 
 
 module.exports = {
-  usrHasData,
   addBet,
-  waitMsg,
-  isWaitMsg,
   parseMsg,
 };

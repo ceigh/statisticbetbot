@@ -1,6 +1,6 @@
 module.exports = {
-  betGood: require('./betGood'),
-  betBad: require('./betBad'),
-  betBack: require('./betBack'),
-  betCancel: require('./betCancel'),
+  betGood: require('./bet/betGood'),
+  betBad: require('./bet/betBad'),
+  betBack: require('./bet/betBack'),
+  betCancel: require('./bet/betCancel'),
 };
