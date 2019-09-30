@@ -1,10 +1,8 @@
 const start = require('./start');
 const help = require('./help');
 const bet = require('./bet');
-
+const stats = require('./stats');
 const queries = require('../queries');
-
-// const docs = require('../lib/docs');
 
 
 module.exports.load = bot => {
@@ -16,15 +14,10 @@ module.exports.load = bot => {
   bot.onText(/^\/b(?:et)? ['"](.+)['"] (\d+[.,]?\d*) (\d+[.,]?\d*)/,
              (msg, match) => bet(bot, msg, match));
 
+  bot.onText(/^\/s(?:tats)?$/, msg => stats(bot, msg));
+
   bot.on('callback_query', query => {
     const act = query.data;
     if (queries.hasOwnProperty(act)) queries[act](bot, query);
   });
-
-  // bot.on('message', msg => {
-  //   const cmd = msg.text.split(' ')[0];
-  //   if (docs.help[cmd.replace('/', '')]) return;
-  //   bot.sendMessage(msg.chat.id, `Команды \`${cmd}\` не существует.`,
-  //                   {parse_mode: 'Markdown'});
-  // });
 };

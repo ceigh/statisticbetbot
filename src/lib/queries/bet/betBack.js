@@ -4,6 +4,7 @@ const {parseMsg, addBet} = require('../../operations');
 module.exports = (bot, query) => {
   const msg = query.message;
   const data = parseMsg(msg.text);
+  data.profit = 0;
   let text;
 
   addBet(query.from.id, 0, data)
